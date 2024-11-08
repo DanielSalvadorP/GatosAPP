@@ -1,8 +1,9 @@
 package org.example;
 import javax.swing.JOptionPane;
+import java.io.IOException;
 
 public class Inicio {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         int menuOption = -1;
         String[] botones = { "1. Ver gatos", "2. Salir"};
         do {
