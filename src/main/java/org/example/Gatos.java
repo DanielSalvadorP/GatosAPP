@@ -1,16 +1,16 @@
 package org.example;
 
 public class Gatos {
-    int id;
+    String id;
     String url;
     String apyKey="live_Lw3kLNnHwdEF9gPxGlW9NIxK4cjvNzlwS9OuKpYQU7POO1s9YP26AlimFOv2oECu";
     String image;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
