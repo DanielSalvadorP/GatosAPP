@@ -1,9 +1,7 @@
 package org.example;
 
 import com.google.gson.Gson;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -65,6 +63,7 @@ public class ServicesCats {
                     break;
                 case 1:
                     favoritoGato(gatos);
+                    System.out.println("favorito");
                     break;
                 default:
                     break;
@@ -73,12 +72,24 @@ public class ServicesCats {
         }catch(IOException e) {
             System.out.println(e);
         }
-
-
-
     }
 
     public static void favoritoGato(Gatos gato){
+
+        try{
+            OkHttpClient client = new OkHttpClient().newBuilder().build();
+            MediaType mediaType = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"image_id\":\"2LEN_GHmx\"\r\n}");
+            Request request = new Request.Builder()
+                    .url("https://api.thecatapi.com/v1/favourites")
+                    .method("POST", body)
+                    .addHeader("x-api-key", gato.getApyKey())
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response response = client.newCall(request).execute();
+        }catch (IOException e){
+            System.out.println(e);
+        }
 
     }
 }
