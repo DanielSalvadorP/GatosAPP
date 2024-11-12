@@ -9,7 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
-public class ServicesCats {
+public class CatService {
 
     public static void showCats() throws IOException {
         // 1. traer lo datos de la api
@@ -26,7 +26,7 @@ public class ServicesCats {
 
         //Convertir imagen en objeto Gatos
         Gson gson = new Gson();
-        Gatos gatos = gson.fromJson(elJson, Gatos.class);
+        Cat gatos = gson.fromJson(elJson, Cat.class);
 
         //Redimensionar imagen
         Image image = null;
@@ -74,7 +74,7 @@ public class ServicesCats {
         }
     }
 
-    public static void favoritoGato(Gatos gato){
+    public static void favoritoGato(Cat gato){
 
         try{
             OkHttpClient client = new OkHttpClient().newBuilder().build();
@@ -91,5 +91,32 @@ public class ServicesCats {
             System.out.println(e);
         }
 
+    }
+
+    public static void showFav(String apyKey) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder().url("https://api.thecatapi.com/v1/favourites?x-api-key=live_Lw3kLNnHwdEF9gPxGlW9NIxK4cjvNzlwS9OuKpYQU7POO1s9YP26AlimFOv2oECu")
+                .method("GET", body)
+                .addHeader("x-api-key", apyKey)
+                .build();
+        Response response = client.newCall(request).execute();
+
+        String  elJson= response.body().string();
+        Gson gson= new Gson();
+
+        CatFav[] catArray = gson.fromJson(elJson, CatFav[].class);
+
+        if (catArray.length > 0){
+            int min = 1;
+            int max = catArray.length;
+            int random = (int) (Math.random() * ((min - max) - 1)) + min;
+            int indice = random - 1;
+
+            CatFav catFav = catArray[indice];
+
+        }
     }
 }
