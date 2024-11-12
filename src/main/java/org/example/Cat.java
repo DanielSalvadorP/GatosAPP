@@ -1,9 +1,10 @@
 package org.example;
 
-public class Gatos {
+
+public class Cat {
     String id;
     String url;
-    String apyKey="live_Lw3kLNnHwdEF9gPxGlW9NIxK4cjvNzlwS9OuKpYQU7POO1s9YP26AlimFOv2oECu";
+    String apyKey = "live_Lw3kLNnHwdEF9gPxGlW9NIxK4cjvNzlwS9OuKpYQU7POO1s9YP26AlimFOv2oECu";
     String image;
 
     public String getId() {

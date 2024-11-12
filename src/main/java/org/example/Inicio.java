@@ -5,22 +5,25 @@ import java.io.IOException;
 public class Inicio {
     public static void main(String[] args) throws IOException {
         int menuOption = -1;
-        String[] botones = { "1. Ver gatos", "2. Salir"};
+        String[] boton = { "1. Ver gatos", "2. Salir"};
         do {
             String option = (String) JOptionPane.showInputDialog(null, "Gatitos java", "Menu principal",
-                    JOptionPane.INFORMATION_MESSAGE, null, botones, botones[0]);
+                    JOptionPane.INFORMATION_MESSAGE, null, boton, boton[0]);
 
             //Validacion de opción de usuario
-            for(int i=0; i<botones.length;i++){
-                if(option.equals(botones[i])){
+            for(int i=0; i<boton.length;i++){
+                if(option.equals(boton[i])){
                     menuOption = i;
                 }
             }
 
             switch (menuOption){
                 case 0:
-                    ServicesCats.showCats();
+                    CatService.showCats();
                     break;
+                case 1:
+                    Cat gato = new Cat();
+                    CatService.showFav(gato.getApyKey());
                 default:
                     break;
             }
